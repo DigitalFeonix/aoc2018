@@ -1,6 +1,6 @@
 <?php
 
-ini_set('memory_limit', '4096M');
+ini_set('memory_limit', '3072M');
 
 $a = -microtime(true);
 
@@ -18,47 +18,42 @@ class LinkList
     {
         if (count($this->nodes) == 0)
         {
-            $this->nodes[$value] = ['prev' => $value, 'next' => $value, 'value' => $value];
+            $this->nodes[ $value ] = ['p' => $value, 'n' => $value];
             $this->cur = $value;
         }
         else
         {
             $node = $this->nodes[ $this->cur ];
 
-            $next_key = $node['next'];
+            $next_key = $node['n'];
             $prev_key = $this->cur; // prev_key on the next node
 
             $this->nodes[ $value ] = [
-                'prev'  => $this->cur,
-                'next'  => $next_key,
-                'value' => $value
+                'p'  => $prev_key,
+                'n'  => $next_key
             ];
 
-            $ins_key = $value;
+            $this->nodes[ $next_key ]['p'] = $value;
+            $this->nodes[ $prev_key ]['n'] = $value;
 
-            $this->nodes[ $next_key ]['prev'] = $ins_key;
-            $this->nodes[ $prev_key ]['next'] = $ins_key;
-
-            $this->cur = $ins_key;
+            $this->cur = $value;
         }
     }
 
     function current()
     {
-        $current_node = $this->nodes[ $this->cur ];
-
-        return $current_node['value'];
+        return $this->cur;
     }
 
     function del()
     {
         $node = $this->nodes[ $this->cur ];
 
-        $prev_key = $node['prev'];
-        $next_key = $node['next'];
+        $prev_key = $node['p'];
+        $next_key = $node['n'];
 
-        $this->nodes[ $prev_key ]['next'] = $next_key;
-        $this->nodes[ $next_key ]['prev'] = $prev_key;
+        $this->nodes[ $prev_key ]['n'] = $next_key;
+        $this->nodes[ $next_key ]['p'] = $prev_key;
 
         unset($this->nodes[ $this->cur ]);
 
@@ -67,11 +62,12 @@ class LinkList
 
     function rotate($num)
     {
+        $dir = ($num < 0) ? 'p' : 'n';
+
         for ($i = 0; $i < abs($num); $i++)
         {
             $node = $this->nodes[ $this->cur ];
-
-            $this->cur = ($num > 0) ? $node['next'] : $node['prev'];
+            $this->cur = $node[ $dir ];
         }
     }
 
@@ -83,9 +79,9 @@ class LinkList
 
         for ($i = 0; $i < $c; $i++)
         {
+            $o[] = $p;
             $n = $this->nodes[ $p ];
-            $p = $n['next'];
-            $o[] = $n['value'];
+            $p = $n['n'];
         }
 
         return $o;
