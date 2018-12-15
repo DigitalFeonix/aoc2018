@@ -10,15 +10,16 @@ class Unit
     public $type;
 
     public $hp = 200;
-    public $ap = 3;
+    public $ap;
 
     public $is_dead = FALSE;
 
-    public function __construct($x, $y, $type)
+    public function __construct($x, $y, $type, $ap = 3)
     {
         $this->id   = static::$acc++;
         $this->loc  = new Vector($x, $y);
         $this->type = $type;
+        $this->ap   = $ap;
     }
 
     // NOTE: reading order breaks ALL ties
