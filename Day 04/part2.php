@@ -1,6 +1,6 @@
 <?php
 
-$input = file_get_contents('./inputs/input04-1.txt');
+$input = file_get_contents('./input');
 $inputs = explode("\n", trim($input));
 
 // convert to chronological order

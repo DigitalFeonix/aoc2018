@@ -1,6 +1,6 @@
 <?php
 
-$input = file_get_contents('./inputs/input10.txt');
+$input = file_get_contents('./input');
 $input = trim($input);
 
 $inputs = explode("\n", $input);

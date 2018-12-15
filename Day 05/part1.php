@@ -1,6 +1,6 @@
 <?php
 
-$input = file_get_contents('./inputs/input05-1.txt');
+$input = file_get_contents('./input');
 $input = trim($input);
 #$input = 'dabAcCaCBAcCcaDA';
 

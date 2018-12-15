@@ -1,6 +1,6 @@
 <?php
 
-$input = file_get_contents('./inputs/input08-1.txt');
+$input = file_get_contents('./input');
 #$input = '2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2';
 $input = trim($input);
 
