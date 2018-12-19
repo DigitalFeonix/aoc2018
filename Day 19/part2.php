@@ -108,7 +108,7 @@ while (!$halted)
     // repeating lines
     //  3  mulr 5 2 3  ( r5 * r2 => r3) X * Y = Z (looking for this to equal 10051261) the number we are looking for factors for
     //  4  eqrr 3 4 3  ( r3 == r4 => r3) 0
-    //  5  addr 3 1 1  ( r3 + r1 => r1) --> this would bump to 7 if above true (instruction 7; r5 + r0 => r0)
+    //  5  addr 3 1 1  ( r3 + r1 => r1) --> this would bump to 7 if above true (instruction 7; r5 + r0 => r0; summing the factors)
     //  6  addi 1 1 1  ( r1 + 1 => r1) jump to 8
     //  8  addi 2 1 2  ( r2 + 1 => r2) increments counter
     //  9  gtrr 2 4 3  ( r2 > r4 => r3) 0
