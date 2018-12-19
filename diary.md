@@ -106,3 +106,23 @@ Part 2: With the way I set up my Unit class, it was trivial to update it so a
 AP power could be passed in. Then just itterate of the simulation until no
 Elf deaths.
 
+## Day 16
+
+Reminded me a bit of the DCPU-16 that Notch created for the ill-fated game 0x10c
+
+## Day 17
+
+Recursion is key.
+
+## Day 18
+
+Return of the game of life, this time in 2D, checking for gliders and offset to goal.
+
+## Day 19
+
+First part cake. Second part had to go to the forums for some hints. Then looked at the input
+some and saw that it was trying to get the factors of a register. Manually summed them with
+some help from https://www.calculatorsoup.com/calculators/math/factors.php
+
+Almost feel like I cheated a bit
+
