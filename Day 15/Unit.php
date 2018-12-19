@@ -39,6 +39,7 @@ class Unit
         return $enemies;
     }
 
+    // based on this http://gregtrowbridge.com/a-basic-pathfinding-algorithm/
     private function pathfinding($start, $goal, $map)
     {
         $goal_pos = $goal->get();
