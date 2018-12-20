@@ -90,18 +90,18 @@ foreach ($inputs as $instruction)
 
 // start with blank registers
 $regs = [1,0,0,0,0,0];
-$regs = [1,3,10551000,0,10551261,20];
-$regs = [1,3,502000,0,10551261,21];
 
-$halted = FALSE;
+$break = FALSE;
 
-while (!$halted)
+while (!$break)
 {
     $cmd = $regs[ $ip ];
 
-    if (!key_exists($cmd, $program))
+    // break when the first register resets, we'll have our number to factor at this point
+    // this is where the sum would be stored
+    if ($regs[0] == 0)
     {
-        $halted = TRUE;
+        $break = TRUE;
         break;
     }
 
@@ -115,16 +115,26 @@ while (!$halted)
     //  10 addr 1 3 1  ( r1 + r3 => r1) jump to 12 if above true (reset r2 for next uber )
     //  11 seti 2 7 1  ( 2 => r1) set IP to 2 (jump to 3)
 
-
-
     $regs = run_code($regs, $program[ $cmd ]);
 
     $regs[ $ip ]++;
 
     echo sprintf('[%s]]', implode(',', $regs)),"\n";
-    #sleep(1);
 }
 
-echo $regs[0],"\n";
+// now get largest register
+$num = max($regs);
 
+// now factor and sum
+$factors = [];
 
+for ($a = 1, $s = ceil(sqrt($num)); $a <= $s; $a++)
+{
+    if ($num % $a == 0)
+    {
+        $factors[] = $a;
+        $factors[] = $num / $a;
+    }
+}
+
+echo array_sum($factors),"\n";

@@ -89,7 +89,7 @@ foreach ($inputs as $instruction)
 }
 
 // start with blank registers
-$regs = [1,0,0,0,0,0];
+$regs = [0,0,0,0,0,0];
 
 $halted = FALSE;
 
@@ -109,5 +109,4 @@ while (!$halted)
 }
 
 echo $regs[0],"\n";
-
 
