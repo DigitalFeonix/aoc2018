@@ -180,7 +180,7 @@ foreach ($new as $y => $row)
             echo 'pathfinding... ';
             $routeLen = pathfind($player, compact('x','y'), $new);
             if ($routeLen / 2 >= 1000) $least1000++;
-            echo $len,"\n";
+            echo ($routeLen/2),"\n";
         }
     }
 }
